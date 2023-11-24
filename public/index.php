@@ -32,7 +32,8 @@ $pages = [
     'addSubDoamain'=>'../src/view/subdomaine/addSubDoamain.php',
     'addSkills'=> '../src/view/skills/addSkills.php',
     'deleteSkills'=>'../src/view/skills/delleteSkills.php',
-    'updateSubDomain'=>'../src/view/subdomaine/updateSubDomain.phpb',
+    'updateSubDomain'=>'../src/view/subdomaine/updateSubDomain.php',
+    'udpdateTrainning' => '../src/view/trainning/deleteTraining.php'
 
 ];
 
