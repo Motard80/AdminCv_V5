@@ -52,7 +52,7 @@ $form = new Form($_POST);
                     <?= $form->error('Description') ?>
                 </div>
                 <div>
-                    <?= $form->submit('Modifer', 'addTrainning', 'addTrainning') ?>
+                    <?= $form->submit('Modifer', 'updateTrainning', 'updateTrainning') ?>
                 </div>
             </form>
         </div>
