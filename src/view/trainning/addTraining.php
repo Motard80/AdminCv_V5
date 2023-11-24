@@ -10,7 +10,7 @@ $form = new Form($_POST);
 
 <body> 
        <header>
-        <?php 
+        <?php //verif
         if(isset($_SESSION['Valid']) && $_SESSION['Valid']==='OK' && $_SESSION['Auth']=== 'All' && $_SESSION['G1']=== $Ay){
             include_once '../src/include/Navbar.php'; ?>
 ?>
