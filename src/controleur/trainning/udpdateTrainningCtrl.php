@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     if (is_int(intval($_GET['id']))) {
         $training = new TrainingModel();
         $VerifDomain = $training->findById($_GET['id']);
-        $title = "Formation :" . $training->getName();
+        $title =  $training->getName();
         if ($VerifDomain == false) {
             $newLocation = "?p=error";
             header("Location: $newLocation", true, 301);
