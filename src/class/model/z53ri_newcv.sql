@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : dim. 12 nov. 2023 à 12:34
+-- Généré le : ven. 24 nov. 2023 à 13:11
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.1.10
 
@@ -41,9 +41,8 @@ CREATE TABLE `acces` (
 --
 
 INSERT INTO `acces` (`id`, `Name`, `Security`, `Acces`) VALUES
-(125, 'Admin', '124524', 'All'),
-(525, 'Recutier', '4564', 'Diploma'),
-(54545, 'NoAccess', '456789', 'No Access');
+(54545, 'TEST', '456789', 'No Access'),
+(125888, 'Utilisateur', '124524', 'All');
 
 -- --------------------------------------------------------
 
@@ -87,11 +86,12 @@ CREATE TABLE `domain` (
 --
 
 INSERT INTO `domain` (`id`, `DomainName`) VALUES
-(2, 'Copetétences transverste'),
+(2, 'Compétences transversales'),
 (3, 'Logistique'),
 (4, 'Gestion D\'une entreprise'),
 (5, 'Développement'),
-(6, 'Managment ');
+(6, 'Managment '),
+(7, 'Cybert-Sécurité');
 
 -- --------------------------------------------------------
 
@@ -101,9 +101,9 @@ INSERT INTO `domain` (`id`, `DomainName`) VALUES
 
 CREATE TABLE `hobbies` (
   `id` int NOT NULL,
-  `HobbiesName` varchar(500) NOT NULL,
-  `HobbiesDescription` varchar(500) NOT NULL,
-  `Since` year NOT NULL
+  `HobbiesName` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `HobbiesDescription` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `Since` year DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
 
 --
@@ -111,9 +111,9 @@ CREATE TABLE `hobbies` (
 --
 
 INSERT INTO `hobbies` (`id`, `HobbiesName`, `HobbiesDescription`, `Since`) VALUES
-(1, 'Le rallye', 'Commissaire de course International (licence B) sur rallye, Endurance tout terrain, Circuit', '2016'),
+(1, 'Le rallye', 'Commissaire de course International (licence B) sur rallye, Endurance tout terrain, Circuit', '2017'),
 (2, 'La Moto', 'Je suis motard depuis 2007 (permis A) \r\nJe possédes une ZZR 1100 de 1994. \r\n', '2007'),
-(3, 'Responsable informatique et classement ligues des Hauts de France du sport Automobile', 'Enregistrement informatique des concurrents avant les épreuves<br>Enregistrement informatique \r\n, des abandons, pénalité, temps et classement pendant les épreuves.', '2021');
+(3, 'Responsable informatique et classement ligues des Hauts de France du sport Automobile', 'Enregistrement informatique des concurrents avant les épreuves<br>Enregistrement informatique \n, des abandons, pénalité, temps et classement pendant les épreuves.', '2021');
 
 -- --------------------------------------------------------
 
@@ -123,6 +123,7 @@ INSERT INTO `hobbies` (`id`, `HobbiesName`, `HobbiesDescription`, `Since`) VALUE
 
 CREATE TABLE `identity` (
   `id` int NOT NULL,
+  `pseudo` varchar(60) DEFAULT NULL,
   `PhoneNumber` varchar(50) NOT NULL,
   `Aged` date DEFAULT NULL,
   `Name` varchar(50) NOT NULL,
@@ -130,18 +131,20 @@ CREATE TABLE `identity` (
   `Adress` varchar(150) NOT NULL,
   `City` varchar(50) NOT NULL,
   `ZipCode` varchar(50) NOT NULL,
+  `pwd` varchar(60) DEFAULT NULL,
   `Mail` varchar(50) NOT NULL,
   `LicenceDriver` varchar(40) DEFAULT NULL,
   `Mobility` int NOT NULL,
-  `Vehicle` varchar(50) DEFAULT NULL
+  `Vehicle` varchar(50) DEFAULT NULL,
+  `accesId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `identity`
 --
 
-INSERT INTO `identity` (`id`, `PhoneNumber`, `Aged`, `Name`, `FirstName`, `Adress`, `City`, `ZipCode`, `Mail`, `LicenceDriver`, `Mobility`, `Vehicle`) VALUES
-(1, '0614593745', '1988-07-05', 'Wilbert', 'Gaëtan', 'Apt2<br>Batiment A<br>Résidence Moliere<br>Rue Neuve', 'Jussy', '02480', 'gaetan.wilbert@outlook.fr', 'A,B', 50, 'Voiture, moto');
+INSERT INTO `identity` (`id`, `pseudo`, `PhoneNumber`, `Aged`, `Name`, `FirstName`, `Adress`, `City`, `ZipCode`, `pwd`, `Mail`, `LicenceDriver`, `Mobility`, `Vehicle`, `accesId`) VALUES
+(1, 'Motard', '0614593745', '1988-07-05', 'Wilbert', 'Gaëtan', 'Apt2<br>Batiment A<br>Résidence Moliere<br>Rue Neuve', 'Jussy', '02480', '28112023Equennes', 'gaetan.wilbert@outlook.fr', 'A,B', 50, 'Voiture, moto', 125888);
 
 -- --------------------------------------------------------
 
@@ -151,7 +154,7 @@ INSERT INTO `identity` (`id`, `PhoneNumber`, `Aged`, `Name`, `FirstName`, `Adres
 
 CREATE TABLE `inscription` (
   `id` int NOT NULL,
-  `Pseudo` varchar(60) DEFAULT NULL,
+  `pseudo` varchar(60) DEFAULT NULL,
   `Society` varchar(100) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `FirstName` varchar(100) NOT NULL,
@@ -161,7 +164,7 @@ CREATE TABLE `inscription` (
   `City` varchar(100) NOT NULL,
   `Mail` varchar(50) DEFAULT NULL,
   `Clef` varchar(500) NOT NULL,
-  `Pass` varchar(60) NOT NULL,
+  `pwd` varchar(60) DEFAULT NULL,
   `Actif` varchar(10) DEFAULT NULL,
   `id_acces` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
@@ -170,8 +173,8 @@ CREATE TABLE `inscription` (
 -- Déchargement des données de la table `inscription`
 --
 
-INSERT INTO `inscription` (`id`, `Pseudo`, `Society`, `Name`, `FirstName`, `ContactPhone`, `CompagnyAddress`, `ZipCode`, `City`, `Mail`, `Clef`, `Pass`, `Actif`, `id_acces`) VALUES
-(3, 'Motard80', 'takimoto', 'Wilbert', 'Gaetan', '0614593745', 'Apt2<br>résidence Moliere<br>Batiment A<br> rue neuve', '02480', 'Jussy', 'gaetan.wilbert@outlook.fr', 'e6mu#f@EgYoww3r1668847014e6mu#f@EgYoww3r', '28112023Equennes@Victor@Apuce@jussy+bOB', 'True', 125);
+INSERT INTO `inscription` (`id`, `pseudo`, `Society`, `Name`, `FirstName`, `ContactPhone`, `CompagnyAddress`, `ZipCode`, `City`, `Mail`, `Clef`, `pwd`, `Actif`, `id_acces`) VALUES
+(3, 'Motard', 'takimoto', 'Wilbert', 'Gaetan', '0614593745', 'Apt2<br>résidence Moliere<br>Batiment A<br> rue neuve', '02480', 'Jussy', 'gaetan.wilbert@outlook.fr', 'e6mu#f@EgYoww3r1668847014e6mu#f@EgYoww3r', '28112023Equennes', 'True', 25512);
 
 -- --------------------------------------------------------
 
@@ -198,7 +201,7 @@ INSERT INTO `professionnalcompetence` (`id`, `JobName`, `StartDate`, `EndDate`, 
 (16, 'Élève Aide Médico psychologique', '2013-06-15', '2014-08-31', ' Maison des Ainées Acheux en Amienois (80)', 'Accompagnement de personnes âgées souffrant de démence sénile ou de la maladie d’Alzheimer'),
 (17, 'Agent de Sécurité incendie/ Agent de sécurité incendie de Bord ', '2015-06-01', '2015-12-31', 'Chantier Naval de Saint Nazaire (44)', 'Controle de sécurité incendie pendant la construction de navire'),
 (18, 'Préventeur en milieu Pétrochimique /Diagnostiquer Amiante/Controlleur\r\nd\'échaffaudage', '2016-01-01', '2018-12-15', 'Total FLANDRE/ Total Normandie', 'Chargés des controles de la conformité des échafaudages ainsi que du respect des régles de sécurité des sociétés extérieurs'),
-(19, 'Chef de projet digital (biomarques)', '2021-01-25', '2021-07-14', 'Biomarques SAS', 'Cdi(-licencient économique ) 25 janvier 2021-14 juillet 2021<br>\r\n-Gestion de la conception d\'un site internet de vente de produits bio sur internet<br>\r\n-Gestion de l’entrepôt<br>\r\n-Mise en place de procédures de gestion de stock<br>\r\n-Mise en place et configuration d\'un WMS<br>\r\n-Manager d\'équipe de développeurs et manutentionnaires d\'entrepôt'),
+(19, 'Chef de projet digital (biomarques)', '2021-01-25', '2021-07-14', 'Biomarques SAS', 'CDI 25 janvier 2021-14 juillet 2021<br>\n-Gestion de la conception d\'un site internet de vente de produits bio sur internet<br>\n-Gestion de l’entrepôt<br>\n-Mise en place de procédures de gestion de stock<br>\n-Mise en place et configuration d\'un WMS<br>\n-Manager d\'équipe de développeurs et manutentionnaires d\'entrepôt'),
 (20, 'Creation d\'une entreprise et fermeture (Takimoto SAS) aout 2021-octobre 2022', '2021-08-01', '2022-10-27', 'Takimoto SAS', 'Président, directeur du pole logistique du 1 avril au 27 octobre 2022<br>\r\nGestion des démarches administratives<br>\r\nCréation d\'un site internet gestion des API<br>\r\nGestion des stocks, gestion des comptes, gestion des relations avec l\'URSAF et les impos<br>');
 
 -- --------------------------------------------------------
@@ -261,7 +264,8 @@ INSERT INTO `skills` (`id`, `Description`, `SubDomain`, `Performance`) VALUES
 (47, 'Formation à la lutte contre l\'incendie dans le cadre de la formation SSIAP 1', '19', 99),
 (48, 'Dossier administratif de fermeture d\'une entrepise SAS', '27', 95),
 (49, 'Préparation au bilan d\'une entreprise SAS', '28', 95),
-(50, 'Relation avec les impots', '29', 95);
+(50, 'Relation avec les impots', '29', 95),
+(51, 'Utilisation des bonnes pratique en matiere de cyber-sécurité; \r\n', '30', 10);
 
 -- --------------------------------------------------------
 
@@ -297,15 +301,17 @@ INSERT INTO `subdomaine` (`id`, `SubDomaineName`, `Domain`) VALUES
 (26, 'Association', '2'),
 (27, 'Dossier de fermeture d\'une entreprise', '4'),
 (28, 'Comptabilité', '4'),
-(29, 'Tache administratif diverse', '4');
+(29, 'Tache administratif diverse', '4'),
+(30, 'Bonne pratique Cyber-sécurité', '8'),
+(31, 'Testetetererererer', '7');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `trainning`
+-- Structure de la table `training`
 --
 
-CREATE TABLE `trainning` (
+CREATE TABLE `training` (
   `id` int NOT NULL,
   `Name` varchar(500) NOT NULL,
   `StartDate` date NOT NULL,
@@ -316,10 +322,10 @@ CREATE TABLE `trainning` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT;
 
 --
--- Déchargement des données de la table `trainning`
+-- Déchargement des données de la table `training`
 --
 
-INSERT INTO `trainning` (`id`, `Name`, `StartDate`, `EndDate`, `School`, `Level`, `Description`) VALUES
+INSERT INTO `training` (`id`, `Name`, `StartDate`, `EndDate`, `School`, `Level`, `Description`) VALUES
 (1, 'Certificat de qualification professionnelle Agent de prévention et de sécurité', '2015-01-06', '2015-02-14', 'INTERFOR Amiens (80)', 'BEP-CAP', 'Apprentissage de la gestion de conflit des règles de surveillance et des règles de sécurité et de préventions'),
 (2, 'Titre Professionnel D\'agent de service de sécurité incendie et d\'assistance à personnes Niveau 1', '2015-02-15', '2015-03-31', 'INTERFOR Amiens (80)', 'BEP-CAP', 'Apprentissage des règles en Immeuble de grande hauteur et en établissement recevant du public (IGH -ERP) dans le domaine de la sécurité incendie'),
 (3, 'Titre Professionnel de conducteur inter Urbain de voyageur', '2017-04-03', '2017-07-31', 'AFTRAL Amiens (80)', 'Bac', 'Apprentissage à la conduite d\'un autocar et d\'un bus'),
@@ -392,9 +398,9 @@ ALTER TABLE `subdomaine`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `trainning`
+-- Index pour la table `training`
 --
-ALTER TABLE `trainning`
+ALTER TABLE `training`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -405,19 +411,19 @@ ALTER TABLE `trainning`
 -- AUTO_INCREMENT pour la table `diploma`
 --
 ALTER TABLE `diploma`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `domain`
 --
 ALTER TABLE `domain`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `hobbies`
 --
 ALTER TABLE `hobbies`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `identity`
@@ -435,7 +441,7 @@ ALTER TABLE `inscription`
 -- AUTO_INCREMENT pour la table `professionnalcompetence`
 --
 ALTER TABLE `professionnalcompetence`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `resumename`
@@ -447,19 +453,19 @@ ALTER TABLE `resumename`
 -- AUTO_INCREMENT pour la table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT pour la table `subdomaine`
 --
 ALTER TABLE `subdomaine`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT pour la table `trainning`
+-- AUTO_INCREMENT pour la table `training`
 --
-ALTER TABLE `trainning`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `training`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
