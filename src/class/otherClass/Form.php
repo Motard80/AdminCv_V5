@@ -26,34 +26,45 @@ class Form
     {
         $this->data = $data;
     }
+ 
     /**
-     * @param $html code html a entourer
-     * @return string
+     * surrond
+     *
+     * @param  mixed $html
+     * @return void
      */
     private function surrond($html){
         return "<{$this->surrond}>$html</{$this->surrond}>";
     }
+        
     /**
-     * 
+     * surrond2
+     *
+     * @param  mixed $html
+     * @return void
      */
     private function surrond2($html){
         return "<{$this->surrond}>$html</{$this->surrond}>";
     }
     
     /**
-     * @param $index string
-     * @return string
+     * getValue
+     *
+     * @param  mixed $index
+     * @return void
      */
     private function getValue($index){
         return isset($this->data[$index]) ? $this->data[$index] : null;
     }
- /**
-     * @param $type string dertermine le type de l'input
-     * @param $label string afficher dans le label
-     * @param $name string nom de l'input
-     * @param $id string nome l'id de l'input
-     * @param $msgLabel string nom passer dans le label 
-     * @return string
+    
+    /**
+     * inputText
+     *
+     * @param  mixed $error
+     * @param  mixed $name
+     * @param  mixed $id
+     * @param  mixed $msgLabel
+     * @return void
      */
     public function inputText( $error, $name, $id, $msgLabel){
 
@@ -62,14 +73,15 @@ class Form
     );
     }
     
- /**
-     *input type email    
-     * @param $type string dertermine le type de l'input
-     * @param $label string afficher dans le label
-     * @param $name string nom de l'input
-     * @param $id string nome l'id de l'input
-     * @param $msgLabel string nom passer dans le label 
-     * @return string
+    
+    /**
+     * inputemail
+     *
+     * @param  mixed $error
+     * @param  mixed $name
+     * @param  mixed $id
+     * @param  mixed $msgLabel
+     * @return void
      */
     public function inputemail( $error, $name, $id, $msgLabel){
 
@@ -79,13 +91,15 @@ class Form
      );
      }
     
- /**
-     * @param $type string dertermine le type de l'input
-     * @param $label string afficher dans le label
-     * @param $name string nom de l'input
-     * @param $id string nome l'id de l'input
-     * @param $msgLabel string nom passer dans le label 
-     * @return string
+    
+    /**
+     * inputPwd
+     *
+     * @param  mixed $error
+     * @param  mixed $name
+     * @param  mixed $id
+     * @param  mixed $msgLabel
+     * @return void
      */
     public function inputPwd( $error, $name, $id, $msgLabel){
 
@@ -94,50 +108,74 @@ class Form
         . '<p class="text-danger" id="Error'.$error.'"><?= isset($formError['.$error.']) ? $formError['.$error.'] : \'\' ?></p>'
      );
      }
-     /**
-      * @param string $value string valeur de l'input submit 
-      * @var $id string valeur de l'id l'input submit 
-      * @var $name string  name l'input submit     
-     * @return string
+         
+    /**
+     * submit
+     *
+     * @param  mixed $valus
+     * @param  mixed $id
+     * @param  mixed $name
+     * @return void
      */
     public function submit($valus, $id, $name){
+        
         return $this->surrond( '<input type="submit" name="'.$name.'" id="'.$id.'" value="'.$valus.'">');
     }
+        
     /**
-     * @var $name string valeur du name de l'input
-     * @var $id string valeur de l'id de l'input
-     * @return string
+     * date
+     *
+     * @param  mixed $name
+     * @param  mixed $id
+     * @param  mixed $msgLabel
+     * @return void
      */
     public function date( $name, $id, $msgLabel){
         return $this->surrond('<label for"'.$id.'">'.$msgLabel.': </label> '
         .'<input type="date" name="'.$name.'" id="'.$id.'" >');
     }
+    
     /**
-     * @var string $error nom de l'erreur
+     * error
+     *
+     * @param  mixed $error
+     * @return void
      */
     public function error($error){
         return $this->surrond('<p class="text-danger" id="Error'.$error.'"><?= isset($formError['.$error.']) ? $formError['.$error.'] : \'\' ?></p>');
-    }
+    }    
+    /**
+     * checkbox
+     *
+     * @param  mixed $id
+     * @param  mixed $msgLabel
+     * @return void
+     */
     public function checkbox($id, $msgLabel){
         return $this->surrond('<label for"'.$id.'">'.$msgLabel.': </label> '
         .'<input type="checkbox" id="'.$id.'">');
     }
     /**
-     * @var string $name string retourne la valeur de name
-     * @var string $id string retourne la valeur de l'id de l'input
-     * @var string $msgLabel string retourne la valeur du label
-     * @var string $value retourne la valeur a modifier
+     * inputUdateText
+     *
+     * @param  mixed $name retourne la valeur de name
+     * @param  mixed $id
+     * @param  mixed $msgLabel
+     * @param  mixed $value
+     * @return void
      */
     public function inputUdateText($name, $id, $msgLabel, $value){
         return $this->surrond( '<label for="'.$id.'">'.$msgLabel.' : </label>'
         . '<input type="password" id="'.$id.'" value="'.$this->getValue($name).'" name="'.$name.'"  placeholder="'.$value.'" >');
-    }
-     /**
-     * @var string $name string valeur du name de l'input
-     * @var string $id string valeur de l'id de l'input
-     * @var string $value retourne la valeur a modifier
-     * @var string $msgLabel string retourne la valeur du label
-     * @return string
+    }    
+    /**
+     * updateDate
+     *
+     * @param  mixed $name
+     * @param  mixed $id
+     * @param  mixed $msgLabel
+     * @param  mixed $value
+     * @return void
      */
     public function updateDate( $name, $id, $msgLabel, $value){
         return $this->surrond('<label for"'.$id.'">'.$msgLabel.': </label> '
