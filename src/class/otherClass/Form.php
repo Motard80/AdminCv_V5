@@ -166,7 +166,7 @@ class Form
      */
     public function inputUdateText($name, $id, $msgLabel, $value){
         return $this->surrond( '<label for="'.$id.'">'.$msgLabel.' : </label>'
-        . '<input type="password" id="'.$id.'" value="'.$this->getValue($name).'" name="'.$name.'"  placeholder="'.$value.'" >');
+        . '<input type="text" id="'.$id.'" value="'.$this->getValue($name).'" name="'.$name.'"  placeholder="'.$value.'" >');
     }    
     /**
      * updateDate

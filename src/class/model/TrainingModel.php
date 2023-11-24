@@ -11,6 +11,18 @@ class TrainingModel extends BaseModel{
     protected ?string $Description = null;
     
 
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
     
     public function getId(){
         return $this->id;
