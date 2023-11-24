@@ -67,12 +67,12 @@ if (isset($_GET['id'])) {
                 $updateDescription = $training->getDescription();
                 $updateTrainning->setDescription($updateDescription);
             }
-        }
-        $checkUdpateTraining = $updateTrainning->update($updateId);
-        if($checkUdpateTraining === true){
-            $newLocation = "?p=trainning";
-        header("Location: $newLocation", true, 301);
-        exit();
+            $checkUdpateTraining = $updateTrainning->update($updateId);
+            if($checkUdpateTraining === true){
+                $newLocation = "?p=trainning";
+                header("Location: $newLocation", true, 301);
+                exit();
+            }
         }
 
     }
