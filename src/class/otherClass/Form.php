@@ -110,7 +110,7 @@ class Form
      */
     public function date( $name, $id, $msgLabel){
         return $this->surrond('<label for"'.$id.'">'.$msgLabel.': </label> '
-        .'<input type="date" name="'.$name.'" id="'.$id.'" required>');
+        .'<input type="date" name="'.$name.'" id="'.$id.'" >');
     }
     /**
      * @var string $error nom de l'erreur
@@ -121,5 +121,26 @@ class Form
     public function checkbox($id, $msgLabel){
         return $this->surrond('<label for"'.$id.'">'.$msgLabel.': </label> '
         .'<input type="checkbox" id="'.$id.'">');
+    }
+    /**
+     * @var string $name string retourne la valeur de name
+     * @var string $id string retourne la valeur de l'id de l'input
+     * @var string $msgLabel string retourne la valeur du label
+     * @var string $value retourne la valeur a modifier
+     */
+    public function inputUdateText($name, $id, $msgLabel, $value){
+        return $this->surrond( '<label for="'.$id.'">'.$msgLabel.' : </label>'
+        . '<input type="password" id="'.$id.'" value="'.$this->getValue($name).'" name="'.$name.'"  placeholder="'.$value.'" >');
+    }
+     /**
+     * @var string $name string valeur du name de l'input
+     * @var string $id string valeur de l'id de l'input
+     * @var string $value retourne la valeur a modifier
+     * @var string $msgLabel string retourne la valeur du label
+     * @return string
+     */
+    public function updateDate( $name, $id, $msgLabel, $value){
+        return $this->surrond('<label for"'.$id.'">'.$msgLabel.': </label> '
+        .'<input type="date" name="'.$name.'" id="'.$id.'" placeholder="'.$value.'"  required>');
     }
 } 
