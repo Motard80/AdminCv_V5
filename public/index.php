@@ -33,7 +33,7 @@ $pages = [
     'addSkills'=> '../src/view/skills/addSkills.php',
     'deleteSkills'=>'../src/view/skills/delleteSkills.php',
     'updateSubDomain'=>'../src/view/subdomaine/updateSubDomain.php',
-    'udpdateTrainning' => '../src/view/trainning/deleteTraining.php'
+    'udpdateTrainning' => '../src/view/trainning/udpdateTrainning.php'
 
 ];
 
