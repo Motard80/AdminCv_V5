@@ -32,8 +32,11 @@ $form = new Form($_POST);
                     <?= $form->inputUdateText('updateHHobbiesDescription', 'updateHHobbiesDescription', 'modifier la desciption', $hobbies->getHobbiesDescription()) ?>
                 </div>                
                 <div>
-                    <p>Année de début du loisir</p>
-                    <?= $form->inputText('Since', 'Since', 'Since', $hobbies->getSince()) ?><br>
+                    <?= $form->inputUdateText('Since', 'Since', 'Since', $hobbies->getSince(), '') ?>
+                    <p class="text-danger" id="ErrorSince"> <img src="asset/img/Icone/WarningRond.png" style="width: 50px;" class="images_petit" />
+                    <?= isset($formError['Since']) ? $formError['Since'] : '' ?>
+                    <img src="asset/img/Icone/WarningRond.png" style="width: 50px;" class="images_petit" />
+                </p>
                 </div>
                 <?= $form->submit('Modifier', 'updateHobbies', 'updateHobbies') ?>
             </form>

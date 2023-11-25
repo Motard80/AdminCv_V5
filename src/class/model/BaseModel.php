@@ -186,7 +186,7 @@ abstract class BaseModel
         // On bind la valeur de l'ID (assumant que votre classe a une propriété "id")
         /* 
         $prepared->bindValue(":id", $this->$id, PDO::PARAM_INT); */
-        var_dump($prepared);
+        //var_dump($prepared);
         // Exécute la requête
         $status = $prepared->execute();
     
