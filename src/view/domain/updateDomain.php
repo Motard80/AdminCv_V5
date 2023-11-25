@@ -24,7 +24,7 @@ $form = new Form($_POST);
         <div class="row"></div>
         <div class="col align-self-center">
             <form action="" method="post">
-                <?=$form->inputUdateText('nameDomain', 'nameDomain', 'Nouveau Nom', 'ee')  ?>
+                <?=$form->inputUdateText('nameDomain', 'nameDomain', 'Nouveau Nom', $domain->getDomainName())  ?>
                 <?= $form->submit('Modifier','updateDomain','updateDomain') ?>
             </form>
         </div>

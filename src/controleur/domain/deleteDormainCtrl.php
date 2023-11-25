@@ -36,16 +36,3 @@ if(isset($_POST['No'])){
     header("Location: $newLocation", true, 301);
     exit();
 }
-
-        // Recuperer les champs en BDD
-        // Pour chaque champ de BDD :
-        // $this->NomDuChamp (clé) = la valeur du champ
-/*         if($VerifDomain !=false){
-            //recupe les donnees en BDD
-            require_once("../src/view/domain/deleteDormain.php");
-                        //teste le formulaire  a été envoyé 
-                    //procéder à la suppression 
-        }
-        else{
-            require_once("../src/view/error.php");
-        } */
