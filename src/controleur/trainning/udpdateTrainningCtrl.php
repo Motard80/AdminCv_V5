@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
         }
         if (isset($_POST['updateTrainning'])) {
             $updateTrainning = new TrainingModel();
-            $updateId = $_GET['id'];
+            $updateId =intval($_GET['id']);
             $updateTrainning->setId($updateId);
             if (!empty($_POST['Name'])) {
                 $updateName = htmlspecialchars($_POST['Name']);

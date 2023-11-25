@@ -24,8 +24,8 @@ $form = new Form($_POST);
         <div class="row"></div>
         <div class="col align-self-center">
             <form action="" method="post">
-                <?=$form->inputText('newDomain','newDomain','newDomain','Modifier le domaine de compétence' )  ?>
-                <?= $form->submit('Ajouter','addDomain','addDomain') ?>
+                <?=$form->inputUdateText('nameDomain', 'nameDomain', 'Nouveau Nom', 'ee')  ?>
+                <?= $form->submit('Modifier','updateDomain','updateDomain') ?>
             </form>
         </div>
 
