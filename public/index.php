@@ -34,7 +34,8 @@ $pages = [
     'deleteSkills'=>'../src/view/skills/delleteSkills.php',
     'updateSubDomain'=>'../src/view/subdomaine/updateSubDomain.php',
     'udpdateTrainning' => '../src/view/trainning/udpdateTrainning.php',
-    'updateHobbie'=>'../src/view/hobbies/updateHobies.php'
+    'updateHobbie'=>'../src/view/hobbies/updateHobies.php',
+    'updateProExper'=>'../src/view/professionnalcompetence/updateProExper.php'
 
 ];
 

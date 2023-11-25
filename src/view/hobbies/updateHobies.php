@@ -33,10 +33,7 @@ $form = new Form($_POST);
                 </div>                
                 <div>
                     <?= $form->inputUdateText('Since', 'Since', 'Since', $hobbies->getSince(), '') ?>
-                    <p class="text-danger" id="ErrorSince"> <img src="asset/img/Icone/WarningRond.png" style="width: 50px;" class="images_petit" />
-                    <?= isset($formError['Since']) ? $formError['Since'] : '' ?>
-                    <img src="asset/img/Icone/WarningRond.png" style="width: 50px;" class="images_petit" />
-                </p>
+                    <p class="text-danger" id="ErrorSince"><?= isset($formError['Since']) ? $img .$formError['Since'] .$img : '' ?></p>
                 </div>
                 <?= $form->submit('Modifier', 'updateHobbies', 'updateHobbies') ?>
             </form>

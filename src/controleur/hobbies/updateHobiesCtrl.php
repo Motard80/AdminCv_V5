@@ -11,6 +11,7 @@ if ($idAccess == $_SESSION) {
 }
 $title = "Modifier un hobies";
 $formError = array();
+$img='<img src="asset/img/Icone/WarningRond.png" style="width: 50px;" class="images_petit" />';
 if (isset($_GET['id'])) {
     if (is_int(intval($_GET['id']))) {
 
