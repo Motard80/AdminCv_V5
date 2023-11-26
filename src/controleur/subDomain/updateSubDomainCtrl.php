@@ -4,7 +4,7 @@ use src\class\model\AccesModel;
 use src\class\model\DomainModel;
 use src\class\model\SubDomaineModel;
 
-$title = 'Ajouter un sous domaine';
+$title = 'Modfier un sous domaine';
 
 $domaine = new DomainModel;
 $ListDomaine = $domaine->showAll();
@@ -21,6 +21,7 @@ if (isset($_GET['id'])) {
     if (is_int(intval($_GET['id']))) {
         if (preg_match('/^[0-9]+$/', $_GET['id'])) {
             $subDomainById = $SubDomain->findById($_GET['id']);
+           // $title= $subDomainById->getSubDomaineName();
         }
     }
 }
