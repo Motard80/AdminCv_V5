@@ -21,8 +21,7 @@ if (isset($_GET['id'])) {
     if (is_int(intval($_GET['id']))) {
         if (preg_match('/^[0-9]+$/', $_GET['id'])) {
             $subDomainById = $SubDomain->findById($_GET['id']);
-           // $title= $subDomainById->getSubDomaineName();
+            $title = 'Modifier'.$subDomainById['SubDomaineName'];
         }
     }
 }
-var_dump($subDomainById);

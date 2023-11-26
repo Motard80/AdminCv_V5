@@ -47,4 +47,25 @@ class SubDomaineModel extends BaseModel
 
             return $results;
     }
+    public static function joinSubAndDomainById($id)
+    {
+        // Etabli la connexion à la base de données
+        $db = Database::getIntance()->db;
+        $querry = 'SELECT `subDomaine`.`id` AS `idSubDomaine`,  `subDomaine`.`Domain` AS `subDomaineKeyDomain`,'
+            . ' `subDomaine`.`SubDomaineName`, `domain`.`id` AS `idDomain`, `domain`.`DomainName` '
+            . 'FROM `subDomaine` '
+            . 'INNER JOIN `domain` '
+            . 'ON `domain`.`id`=`subDomaine`.`Domain`'
+            .'WHERE id= :id'; 
+            $prepared = $db->prepare($querry);
+            $prepared->bindValue(':id', $id, PDO::PARAM_INT);
+            $status = $prepared->execute();
+            $results=false;
+
+            if($status){
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            return $results;
+    }
 }
